@@ -26,7 +26,7 @@ const Countdown = ({ targetDate, onCountdownEnd }) => {
     const minutes = Math.floor((time / 1000 / 60) % 60);
     const hours = Math.floor((time / (1000 * 60 * 60)) % 24);
     const days = Math.floor(time / (1000 * 60 * 60 * 24));
-    return `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+    return `${days} 大太阳天, ${hours} 小时, ${minutes} 分钟, ${seconds} 秒`;
   }
 
   const countdownContainerStyle = {
@@ -50,13 +50,14 @@ const Countdown = ({ targetDate, onCountdownEnd }) => {
     fontSize: '2em',
     color: '#ffffff',
     textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
-    fontFamily: 'Arial, sans-serif'
+    fontFamily: 'Arial, sans-serif',
+    textAlign: 'center'
   };
 
   return (
     <div style={countdownContainerStyle}>
         <div style={countdownTextStyle}>
-            {timeLeft > 0 ? formatTimeLeft(timeLeft) : "Time's up!"}
+            {timeLeft > 0 ? formatTimeLeft(timeLeft) : "妞破壳万岁!"}
         </div>
     </div>
   );

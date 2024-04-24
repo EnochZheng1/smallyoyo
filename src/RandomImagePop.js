@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-const RandomImagePop = ({ imageCount }) => {
+const RandomImagePop = ({ imageCount, active }) => {
   const [images, setImages] = useState([]);
   const [availableIndices, setAvailableIndices] = useState([...Array(imageCount).keys()].map(x => x + 1));
 
-  const baseTime = 1000; // Base time in milliseconds
+  const baseTime = 1000;
 
   useEffect(() => {
+    if (!active) {
+      return;
+    }
     const addImage = () => {
       if (availableIndices.length === 0) {
         // Reset the available indices when all have been used
@@ -22,7 +25,7 @@ const RandomImagePop = ({ imageCount }) => {
         setAvailableIndices(newAvailableIndices);
 
         const randomImagePath = `${process.env.PUBLIC_URL}/photos/image${imageNumber}.jpg`;
-        console.log(randomImagePath);
+        //console.log(randomImagePath);
         const maxWidth = Math.min(window.innerWidth * 0.5, 400);
         const maxHeight = maxWidth;
         const left = Math.random() * (window.innerWidth - maxWidth);
@@ -70,12 +73,14 @@ const RandomImagePop = ({ imageCount }) => {
 
     const interval = setInterval(addImage, baseTime * 4);
     return () => clearInterval(interval);
-  }, [imageCount, availableIndices]); // Include availableIndices in the dependency array
-
+  }, [imageCount, availableIndices, active]);
+  const handleImageClick = (src) => {
+    window.open(src, '_blank');
+  };
   return (
     <>
       {images.map(image => (
-        <img key={image.id} src={image.src} alt="Random Pop" style={image.style} />
+        <img key={image.id} src={image.src} alt="Random Pop" style={image.style} onClick={() => handleImageClick(image.src)} />
       ))}
     </>
   );
