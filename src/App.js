@@ -10,7 +10,7 @@ import confetti from 'canvas-confetti';
 import LetterComponent from './LetterComponent';
 
 const App = () => {
-  const targetDate = new Date("April 24, 2024 23:59:59");
+  const targetDate = new Date("June 24, 2024 23:59:59");
   // const targetDate = new Date("April 22, 2024 23:54:59");
   const [countdownFinished, setCountdownFinished] = useState(false);
   const [showLetterComponent, setShowLetterComponent] = useState(false);
